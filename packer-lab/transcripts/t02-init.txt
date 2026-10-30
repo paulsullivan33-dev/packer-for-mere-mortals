@@ -1,0 +1,32 @@
+$ packer init image.pkr.hcl
+Failed getting the "github.com/hashicorp/null" plugin:
+1 error occurred:
+	* GET https://api.github.com/repos/hashicorp/packer-plugin-null/git/matching-refs/tags: 404 Not Found []
+
+
+
+$ packer plugins installed
+
+# The 404 is the lesson: there is no separate null plugin to download.
+# The null builder is bundled inside Packer. External plugins are a
+# different story — this demo template declares the docker plugin:
+
+$ cat init-demo.pkr.hcl
+# A template that does nothing but declare an external plugin, so that
+# `packer init init-demo.pkr.hcl` has something real to download.
+# The docker builder itself is documented-only in this guide: the lab
+# has no container runtime to build with. Installing its plugin works
+# fine, and that install is all this file exists to prove.
+packer {
+  required_plugins {
+    docker = {
+      source  = "github.com/hashicorp/docker"
+      version = ">= 1.0.0"
+    }
+  }
+}
+$ packer init init-demo.pkr.hcl
+Installed plugin github.com/hashicorp/docker v1.1.4 in "/home/hatch/.config/packer/plugins/github.com/hashicorp/docker/packer-plugin-docker_v1.1.4_x5.0_linux_amd64"
+
+$ packer plugins installed
+/home/hatch/.config/packer/plugins/github.com/hashicorp/docker/packer-plugin-docker_v1.1.4_x5.0_linux_amd64

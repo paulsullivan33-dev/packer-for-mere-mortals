@@ -1,0 +1,27 @@
+site_name: Packer for Mere Mortals
+site_description: Build identical machine images from one written template instead of setting up every machine by hand. Templates, builders, provisioners and variables, one complete build run and proved end to end on a machine with no cloud account and no hypervisor, and the real builders surveyed honestly, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/packer-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text CC BY 4.0, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Packer Is: what-packer-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Packer: installing-packer.md
+  - Your First Template: your-first-template.md
+  - Building Without a Cloud: building-without-a-cloud.md
+  - Provisioners: provisioners.md
+  - Variables: variables.md
+  - Proving the Image: proving-the-image.md
+  - Real Builders: real-builders.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

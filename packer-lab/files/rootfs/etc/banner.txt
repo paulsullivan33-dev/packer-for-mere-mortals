@@ -1,0 +1,2 @@
+basebox — a small example server image.
+Built from one Packer template, the same way every time.

@@ -1,0 +1,30 @@
+$ packer build image.pkr.hcl
+basebox.null.base: output will be in this color.
+
+==> basebox.null.base: Using SSH communicator to connect: 127.0.0.1
+==> basebox.null.base: Waiting for SSH to become available...
+==> basebox.null.base: Connected to SSH!
+==> basebox.null.base: Uploading ./files/ => packer-stage
+==> basebox.null.base: Provisioning with shell script: /tmp/packer-shell4151105077
+==> basebox.null.base: chmod: cannot access 'packer-stage/opt/app/start.sh': No such file or directory
+==> basebox.null.base: Provisioning step had errors: Running the cleanup provisioner, if present...
+Build 'basebox.null.base' errored after 172 milliseconds 628 microseconds: Script exited with non-zero exit status: 1. Allowed exit codes are: [0]
+
+==> Wait completed after 172 milliseconds 680 microseconds
+
+==> Some builds didn't complete successfully and had errors:
+--> basebox.null.base: Script exited with non-zero exit status: 1. Allowed exit codes are: [0]
+
+==> Builds finished but no artifacts were created.
+exit=1
+
+$ find ~/packer-stage -type f | sort
+find: '/home/hatch/packer-stage': No such file or directory
+
+$ cat ~/packer-stage/build-info.txt
+cat: /home/hatch/packer-stage/build-info.txt: No such file or directory
+$ cat collected/build-info.txt
+cat: collected/build-info.txt: No such file or directory
+
+$ cat packer-manifest.json
+cat: packer-manifest.json: No such file or directory

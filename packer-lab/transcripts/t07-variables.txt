@@ -1,0 +1,26 @@
+$ cat release.pkrvars.hcl
+release      = "2.1.0"
+motd_message = "basebox release build. Authorised users only."
+
+$ packer build -var-file=release.pkrvars.hcl -var stage_dir=packer-stage-2.1 image.pkr.hcl
+==> basebox.null.base: staged basebox release 2.1.0 into packer-stage-2.1
+Build 'basebox.null.base' finished after 158 milliseconds 389 microseconds.
+==> Builds finished. The artifacts of successful builds are:
+
+$ packer build -var-file=release.pkrvars.hcl -var release=3.0.0 -var stage_dir=packer-stage-3.0 image.pkr.hcl
+==> basebox.null.base: staged basebox release 3.0.0 into packer-stage-3.0
+Build 'basebox.null.base' finished after 180 milliseconds 114 microseconds.
+==> Builds finished. The artifacts of successful builds are:
+
+$ cat ~/packer-stage-2.1/build-info.txt ~/packer-stage-2.1/etc/motd
+image=basebox
+release=2.1.0
+built_by=packer
+basebox release build. Authorised users only.
+$ cat ~/packer-stage-3.0/build-info.txt
+image=basebox
+release=3.0.0
+built_by=packer
+
+$ PKR_VAR_release=9.9.9 packer inspect image.pkr.hcl | grep release
+var.release: "9.9.9"

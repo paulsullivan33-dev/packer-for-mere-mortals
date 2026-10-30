@@ -1,0 +1,38 @@
+$ packer validate image.pkr.hcl
+The configuration is valid.
+exit=0
+
+$ packer inspect image.pkr.hcl
+Packer Inspect: HCL2 mode
+
+> input-variables:
+
+var.image_name: "basebox"
+var.motd_message: "Authorised users only. All activity is logged."
+var.release: "1.0.0"
+var.ssh_port: "2222"
+var.ssh_username: "root"
+var.stage_dir: "packer-stage"
+
+> local-variables:
+
+
+> builds:
+
+  > basebox:
+
+    sources:
+
+      null.base
+
+    provisioners:
+
+      file
+      shell
+      file
+
+    post-processors:
+
+      0:
+        manifest
+

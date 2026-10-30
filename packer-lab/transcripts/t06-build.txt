@@ -1,0 +1,62 @@
+$ find files -type f | sort
+files/rootfs/etc/banner.txt
+files/rootfs/opt/app/server.conf
+files/rootfs/opt/app/start.sh
+
+$ packer build image.pkr.hcl
+basebox.null.base: output will be in this color.
+
+==> basebox.null.base: Using SSH communicator to connect: 127.0.0.1
+==> basebox.null.base: Waiting for SSH to become available...
+==> basebox.null.base: Connected to SSH!
+==> basebox.null.base: Uploading ./files/ => packer-stage
+==> basebox.null.base: Provisioning with shell script: /tmp/packer-shell896189361
+==> basebox.null.base: staged basebox release 1.0.0 into packer-stage
+==> basebox.null.base: Downloading packer-stage/build-info.txt => ./collected/build-info.txt
+==> basebox.null.base: Running post-processor:  (type manifest)
+Build 'basebox.null.base' finished after 190 milliseconds 102 microseconds.
+
+==> Wait completed after 190 milliseconds 158 microseconds
+
+==> Builds finished. The artifacts of successful builds are:
+--> basebox.null.base: Did not export anything. This is the null builder
+--> basebox.null.base: Did not export anything. This is the null builder
+exit=0
+
+$ find ~/packer-stage -type f | sort   # ~ is the SSH login home, /root
+/root/packer-stage/build-info.txt
+/root/packer-stage/etc/banner.txt
+/root/packer-stage/etc/motd
+/root/packer-stage/inventory.txt
+/root/packer-stage/opt/app/server.conf
+/root/packer-stage/opt/app/start.sh
+
+$ cat ~/packer-stage/build-info.txt
+image=basebox
+release=1.0.0
+built_by=packer
+$ cat ~/packer-stage/etc/motd
+Authorised users only. All activity is logged.
+$ cat collected/build-info.txt   # downloaded back by the second file provisioner
+image=basebox
+release=1.0.0
+built_by=packer
+
+$ cat packer-manifest.json
+{
+  "builds": [
+    {
+      "name": "base",
+      "builder_type": "null",
+      "build_time": 1793341512,
+      "files": null,
+      "artifact_id": "Null",
+      "packer_run_uuid": "153dd6cf-372c-4208-e9c0-750dbf5b4d53",
+      "custom_data": {
+        "image_name": "basebox",
+        "release": "1.0.0"
+      }
+    }
+  ],
+  "last_run_uuid": "153dd6cf-372c-4208-e9c0-750dbf5b4d53"
+}

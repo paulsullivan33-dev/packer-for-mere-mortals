@@ -1,0 +1,27 @@
+$ packer fmt -check -diff unformatted.pkr.hcl; echo "exit=$?"
+unformatted.pkr.hcl
+--- old/unformatted.pkr.hcl
++++ new/unformatted.pkr.hcl
+@@ -36,12 +36,12 @@
+ }
+ 
+ source "null" "base" {
+-  communicator = "ssh"
++  communicator           = "ssh"
+   ssh_host               = "127.0.0.1"
+-  ssh_port= var.ssh_port
++  ssh_port               = var.ssh_port
+   ssh_username           = var.ssh_username
+   ssh_private_key_file   = "${path.root}/id_lab"
+-  ssh_timeout      =   "1m"
++  ssh_timeout            = "1m"
+   ssh_handshake_attempts = 20
+ }
+ 
+exit=3
+
+$ packer fmt unformatted.pkr.hcl
+unformatted.pkr.hcl
+
+$ packer fmt -check unformatted.pkr.hcl; echo "exit=$?"
+exit=0

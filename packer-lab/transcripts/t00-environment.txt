@@ -1,0 +1,14 @@
+$ uname -a; nproc
+Linux htch-runtime 7.0.0-39-generic #1 SMP PREEMPT_DYNAMIC Thu Sep 24 08:42:15 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+2
+
+$ ls -la /dev/kvm
+ls: cannot access '/dev/kvm': No such file or directory
+
+$ grep linux_amd64 packer_1.16.2_SHA256SUMS
+abbfe0cf74985084112659b53e3565f264f70a20914c3b7c4f789f54f61c2414  packer_1.16.2_linux_amd64.zip
+$ sha256sum packer_1.16.2_linux_amd64.zip
+abbfe0cf74985084112659b53e3565f264f70a20914c3b7c4f789f54f61c2414  packer_1.16.2_linux_amd64.zip
+
+$ packer version
+Packer v1.16.2

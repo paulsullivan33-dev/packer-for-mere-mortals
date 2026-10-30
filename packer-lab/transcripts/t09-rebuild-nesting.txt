@@ -1,0 +1,14 @@
+$ find ~/packer-stage -type f | sort   # after a second build into the same stage dir
+/root/packer-stage/build-info.txt
+/root/packer-stage/etc/banner.txt
+/root/packer-stage/etc/motd
+/root/packer-stage/inventory.txt
+/root/packer-stage/opt/app/server.conf
+/root/packer-stage/opt/app/start.sh
+/root/packer-stage/rootfs/etc/banner.txt
+/root/packer-stage/rootfs/opt/app/server.conf
+/root/packer-stage/rootfs/opt/app/start.sh
+
+# The second upload added a nested rootfs/ copy next to the first
+# build's files instead of replacing them. Nothing was deleted.
+# Rule the lab works by: always build into a fresh stage directory.

@@ -1,0 +1,15 @@
+$ grep -n releas broken.pkr.hcl | head -3
+60:      "RELEASE=${var.releas}",
+85:      release    = var.releas
+
+$ packer validate broken.pkr.hcl; echo "exit=$?"
+Error: Failed preparing provisioner-block "shell" ""
+
+  on broken.pkr.hcl line 57:
+  (source code not available)
+
+broken.pkr.hcl:60,21-28: Unsupported attribute; This object does not have an
+attribute named "releas".
+
+
+exit=1

@@ -1,0 +1,21 @@
+$ ssh-keygen -t ed25519 -f id_lab -N "" -C packer-lab
+id_lab and id_lab.pub created (the key Packer will log in with)
+
+$ cat sshd_config
+Port 2222
+ListenAddress 127.0.0.1
+HostKey /home/hatch/workspace/packer-labwork/sshd/host_key
+AuthorizedKeysFile /home/hatch/workspace/packer-labwork/sshd/authorized_keys
+PasswordAuthentication no
+PubkeyAuthentication yes
+StrictModes no
+UsePAM no
+PidFile /home/hatch/workspace/packer-labwork/sshd/sshd.pid
+
+$ /usr/sbin/sshd -f sshd_config
+(first attempt refused: "/run/sshd must be owned by root and not group or world-writable" — the directory was mode 770; chmod 755 fixed it)
+
+$ ssh -i id_lab -p 2222 root@127.0.0.1 "hostname; whoami; pwd"
+htch-runtime
+root
+/root
